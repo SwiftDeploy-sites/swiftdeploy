@@ -1,16 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>{{BusinessName}} – Powered by SwiftDeploy</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{BusinessName}} – Contact Us</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #fdf6f0; color: #2E2C2F; padding: 2rem; }
-    .cta { background-color: #F96E5B; padding: 1rem; border: none; color: white; font-size: 1.2rem; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf6f0;
+      color: #2E2C2F;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #F96E5B;
+    }
+    .cta {
+      background-color: #F96E5B;
+      color: white;
+      padding: 1rem;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    form {
+      margin-top: 2rem;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #888;
+    }
   </style>
 </head>
 <body>
   <h1>Welcome to {{BusinessName}}</h1>
   <p>{{WhatTheyDo}}</p>
-  <p>We help {{IdealClient}} by offering: {{Offer}}</p>
-  <button class="cta">{{CTA}}</button>
+  <h2>Let’s Connect</h2>
+  <p>If you're ready to get started or have a question, fill out the form below and we’ll get back to you ASAP.</p>
+
+  <form action="https://formsubmit.co/{{YourEmailHere}}" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" name="name" required />
+
+    <label for="email">Your Email</label>
+    <input type="email" name="email" required />
+
+    <label for="message">Your Message</label>
+    <textarea name="message" rows="5" required></textarea>
+
+    <button type="submit" class="cta">{{CTA}}</button>
+
+    <!-- Optional Redirect on Submit -->
+    <input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you" />
+  </form>
+
+  <div class="footer">
+    Powered by SwiftDeploy • © {{BusinessName}} 2024
+  </div>
 </body>
 </html>
