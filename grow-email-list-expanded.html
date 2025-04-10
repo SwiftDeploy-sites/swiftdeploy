@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{BusinessName}} - Free Resource</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: {{BackgroundColor}};
+      color: {{TextColor}};
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    input, button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: {{AccentColor}};
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>{{LeadMagnetTitle}}</h1>
+      <p>{{LeadMagnetSubtitle}}</p>
+    </header>
+
+    <div class="form">
+      <form action="https://formsubmit.co/{{YourEmail}}" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <button type="submit">{{ButtonLabel}}</button>
+      </form>
+    </div>
+
+    <section>
+      <h2>What’s Inside</h2>
+      <ul>
+        <li>{{Feature1}}</li>
+        <li>{{Feature2}}</li>
+        <li>{{Feature3}}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>About {{BusinessName}}</h2>
+      <p>{{BusinessBio}}</p>
+    </section>
+  </div>
+</body>
+</html>

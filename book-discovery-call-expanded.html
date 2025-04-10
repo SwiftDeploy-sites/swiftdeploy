@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{BusinessName}} - Book a Discovery Call</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: {{BackgroundColor}};
+      color: {{TextColor}};
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      background-color: {{AccentColor}};
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1rem;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="section">
+      <h1>{{Headline}}</h1>
+      <p>{{Subheadline}}</p>
+      <a href="{{BookingLink}}" class="cta-button">Schedule a Call</a>
+    </header>
+
+    <section class="section">
+      <h2>About {{BusinessName}}</h2>
+      <p>{{BusinessDescription}}</p>
+    </section>
+
+    <section class="section">
+      <h2>Who We Help</h2>
+      <p>{{TargetAudienceDescription}}</p>
+    </section>
+
+    <section class="section">
+      <h2>Why Book a Discovery Call?</h2>
+      <ul>
+        <li>{{Reason1}}</li>
+        <li>{{Reason2}}</li>
+        <li>{{Reason3}}</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>What to Expect</h2>
+      <p>{{CallExpectations}}</p>
+    </section>
+
+    <section class="section">
+      <h2>Testimonials</h2>
+      <blockquote>{{Testimonial1}}</blockquote>
+      <blockquote>{{Testimonial2}}</blockquote>
+    </section>
+  </div>
+</body>
+</html>
