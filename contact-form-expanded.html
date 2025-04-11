@@ -236,7 +236,7 @@
     // Example dynamic data (you’ll replace this with actual values using Make)
     const data = {
       logosubmitted: "~logosubmitted~",
-      footer_type: "~footer_type~",
+      footer_type: "",
       email: "~email~",
       phone_display: "~phone_display~",
       phone_raw: "~phone_raw~",
@@ -255,17 +255,11 @@
     // Inject logo or business name
     const logoContainer = document.getElementById("logo-container");
     if (data.logosubmitted && data.logosubmitted !== "") {
-      logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="${data.businessname} logo" style="max-height: 40px;">`;
+      logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="~businessname~" logo" style="max-height: 40px;">`;
     } else {
-      logoContainer.textContent = data.businessname;
+      logoContainer.textContent = ~businessname~;
     }
-    // Inject logo or business name
-    const logoContainer = document.getElementById("logo-container");
-    if (data.logosubmitted && data.logosubmitted !== "") {
-      logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="${data.businessname} logo" style="max-height: 40px;">`;
-    } else {
-      logoContainer.textContent = data.businessname;
-    }
+
 
     if (data.address !== "" && data.encoded_address !== ""){
       data.footer_type = "map";
