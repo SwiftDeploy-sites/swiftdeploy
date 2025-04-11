@@ -92,7 +92,7 @@
       line-height: 1.6;
     }
     .section {
-      background: background-color: ~sectionbackgroundcolor~;
+      background-color: ~sectionbackgroundcolor~;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
@@ -161,13 +161,11 @@
 </head>
 <body>
   <nav>
-    <div class="logo">
-  #if ~logosubmitted~
-    <img src="~logosubmitted~" alt="~businessname~ logo" style="max-height: 40px; vertical-align: middle;" />
-  #/if
-  #unless ~logosubmitted~
-    ~businessname~
-  #/unless
+    <div class="logo" id="logo-container">
+      
+    </div>
+
+   
 </div>
 
     <div class="nav-toggle" onclick="toggleMenu()">☰</div>
