@@ -274,12 +274,12 @@
     // Render footer based on footer_type
     const footer = document.getElementById("footer-container");
     if (data.footer_type === "simple") {
-      footer.innerHTML = `&copy; 2025 Swift Deploy | Powered by <a href="swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https:buddertech.com" target="_blank">Budder Technology</a>`;
+      footer.innerHTML = `&copy; 2025 Swift Deploy | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>`;
     }
     else if (data.footer_type === "two-column") {
       footer.innerHTML = `
         <div>
-          &copy; 2025 Swift Deploy | Powered by <a href="swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https:buddertech.com" target="_blank">Budder Technology</a>
+          &copy; 2025 Swift Deploy | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://www.buddertech.com" target="_blank">Budder Technology</a>
         </div>
         <div>
           ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
@@ -296,7 +296,7 @@
     else if (data.footer_type === "map") {
       footer.innerHTML = `
         <div>
-          &copy; 2025 Swift Deploy | Powered by <a href="swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https:buddertech.com" target="_blank">Budder Technology</a>
+          &copy; 2025 Swift Deploy | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>
         </div>
         <div>
           ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
