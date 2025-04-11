@@ -161,7 +161,15 @@
 </head>
 <body>
   <nav>
-    <div class="logo">~businessname~</div>
+    <div class="logo">
+  ~#if logosubmitted~
+    <img src="~logosubmitted~" alt="~businessname~ logo" style="max-height: 40px; vertical-align: middle;" />
+  ~#/if~
+  ~#unless logosubmitted~
+    ~businessname~
+  ~#/unless~
+</div>
+
     <div class="nav-toggle" onclick="toggleMenu()">☰</div>
     <div class="desktop-nav">
       <a href="#services">Services</a>
