@@ -162,12 +162,12 @@
 <body>
   <nav>
     <div class="logo">
-  ~#if logosubmitted~
+  #if ~logosubmitted~
     <img src="~logosubmitted~" alt="~businessname~ logo" style="max-height: 40px; vertical-align: middle;" />
-  ~#/if~
-  ~#unless logosubmitted~
+  #/if
+  #unless ~logosubmitted~
     ~businessname~
-  ~#/unless~
+  #/unless
 </div>
 
     <div class="nav-toggle" onclick="toggleMenu()">☰</div>
@@ -228,40 +228,40 @@
 
     <!-- Dynamic Footer -->
     <footer>
-      ~#if footer_type == 'simple'~
+      #if ~footer_type~ == 'simple'
         <div style="text-align: center; padding: 2rem 1rem;">
           &copy; ~year~ ~businessname~
         </div>
-      ~#/if~
+      #/if
 
-      ~#if footer_type == 'two-column'~
+      #if ~footer_type~ == 'two-column'
         <div style="display: flex; justify-content: space-between; padding: 2rem; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 200px;">&copy; ~year~ ~businessname~</div>
           <div style="flex: 1; min-width: 200px;">
-            ~#if email~<div>Email: <a href="mailto:~email~" target="_blank">~email~</a></div>~#/if~
-            ~#if phone_display~<div>Phone: <a href="tel:~phone_raw~" target="_blank">~phone_display~</a></div>~#/if~
+            #if ~email~<div>Email: <a href="mailto:~email~" target="_blank">~email~</a></div>#/if
+            #if ~phone_display~<div>Phone: <a href="tel:~phone_raw~" target="_blank">~phone_display~</a></div>#/if
             <div style="margin-top: 0.5rem;">
-              ~#if facebook~<a href="~facebook~" target="_blank"><i class="fab fa-facebook"></i></a>~#/if~
-              ~#if instagram~<a href="~instagram~" target="_blank"><i class="fab fa-instagram"></i></a>~#/if~
-              ~#if twitter~<a href="~twitter~" target="_blank"><i class="fab fa-twitter"></i></a>~#/if~
-              ~#if linkedin~<a href="~linkedin~" target="_blank"><i class="fab fa-linkedin"></i></a>~#/if~
+              #if ~facebook~<a href="~facebook~" target="_blank"><i class="fab fa-facebook"></i></a>#/if
+              #if ~instagram~<a href="~instagram~" target="_blank"><i class="fab fa-instagram"></i></a>#/if
+              #if ~twitter~<a href="~twitter~" target="_blank"><i class="fab fa-twitter"></i></a>#/if
+              #if ~linkedin~<a href="~linkedin~" target="_blank"><i class="fab fa-linkedin"></i></a>#/if
             </div>
           </div>
         </div>
-      ~#/if~
+      #/if
 
-      ~#if footer_type == 'map'~
+      #if ~footer_type~ == 'map'
         <div style="display: flex; justify-content: space-between; padding: 2rem; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 200px;">&copy; ~year~ ~businessname~</div>
           <div style="flex: 1; min-width: 200px;">
-            ~#if email~<div>Email: <a href="mailto:~email~" target="_blank">~email~</a></div>~#/if~
-            ~#if phone_display~<div>Phone: <a href="tel:~phone_raw~" target="_blank">~phone_display~</a></div>~#/if~
+            #if ~email~<div>Email: <a href="mailto:~email~" target="_blank">~email~</a></div>#/if
+            #if ~phone_display~<div>Phone: <a href="tel:~phone_raw~" target="_blank">~phone_display~</a></div>#/if
             <div style="margin-top: 0.5rem;">
-              ~#if facebook~<a href="~facebook~" target="_blank"><i class="fab fa-facebook"></i></a>~#/if~
-              ~#if instagram~<a href="~instagram~" target="_blank"><i class="fab fa-instagram"></i></a>~#/if~
-              ~#if twitter~<a href="~twitter~" target="_blank"><i class="fab fa-twitter"></i></a>~#/if~
-              ~#if linkedin~<a href="~linkedin~" target="_blank"><i class="fab fa-linkedin"></i></a>~#/if~
-              ~#if tiktok~<a href="~tiktok~" target="_blank"><i class="fab fa-tiktok"></i></a>~#/if~
+              #if ~facebook~<a href="~facebook~" target="_blank"><i class="fab fa-facebook"></i></a>#/if
+              #if ~instagram~<a href="~instagram~" target="_blank"><i class="fab fa-instagram"></i></a>#/if
+              #if ~twitter~<a href="~twitter~" target="_blank"><i class="fab fa-twitter"></i></a>#/if
+              #if ~linkedin~<a href="~linkedin~" target="_blank"><i class="fab fa-linkedin"></i></a>#/if
+              #if ~tiktok~<a href="~tiktok~" target="_blank"><i class="fab fa-tiktok"></i></a>#/if
             </div>
           </div>
           <div style="flex: 1; min-width: 300px;">
@@ -274,7 +274,7 @@
             </iframe>
           </div>
         </div>
-      ~#/if~
+      #/if
     </footer>
   </div>
 </body>
