@@ -248,7 +248,7 @@
       encoded_address: "~encoded_address~"
     };
     Object.keys(data).forEach(key => {
-    if (data[key] === null || data[key] === "null" || typeof val !== "string" || val.trim().startsWith("~")) {
+    if (data[key] === null || data[key] === "null" || typeof data[key] !== "string" || data[key].trim().startsWith("~")) {
       data[key] = "";
     }
     });
