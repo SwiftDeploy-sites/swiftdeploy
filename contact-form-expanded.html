@@ -255,11 +255,10 @@
     // Inject logo or business name
     const logoContainer = document.getElementById("logo-container");
     if (data.logosubmitted && data.logosubmitted !== "") {
-      logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="~businessname~ logo" style="max-height: 40px;">`;
+      logoContainer.innerHTML = `<a href="#"><img src="${data.logosubmitted}" alt="~businessname~ logo" style="max-height: 40px;"></a>`;
     } else {
-      logoContainer.textContent = "~businessname~";
+      logoContainer.innerHTML = `<a href="#">~businessname~`</a>;
     }
-
 
     if (data.address !== "" && data.encoded_address !== ""){
       data.footer_type = "map";
