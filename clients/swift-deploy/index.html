@@ -256,9 +256,9 @@
     const logoContainer = document.getElementById("logo-container");
     console.log(data);
     if (data.logosubmitted && data.logosubmitted !== "") {
-      logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="Swift Deploy logo" style="max-height: 40px;">`;
+      logoContainer.innerHTML = `<a href="#"><img src="${data.logosubmitted}" alt="Swift Deploy logo" style="max-height: 40px;"></a>`;
     } else {
-      logoContainer.textContent = "Swift Deploy";
+      logoContainer.innerHTML = `<a href="#">Swift Deploy</a>`;
     }
 
 
