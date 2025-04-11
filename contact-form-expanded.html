@@ -228,54 +228,81 @@
 
     <!-- Dynamic Footer -->
     <footer>
-      #if ~footer_type~ == 'simple'
-        <div style="text-align: center; padding: 2rem 1rem;">
-          &copy; ~year~ ~businessname~
-        </div>
-      #/if
-
-      #if ~footer_type~ == 'two-column'
-        <div style="display: flex; justify-content: space-between; padding: 2rem; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 200px;">&copy; ~year~ ~businessname~</div>
-          <div style="flex: 1; min-width: 200px;">
-            #if ~email~<div>Email: <a href="mailto:~email~" target="_blank">~email~</a></div>#/if
-            #if ~phone_display~<div>Phone: <a href="tel:~phone_raw~" target="_blank">~phone_display~</a></div>#/if
-            <div style="margin-top: 0.5rem;">
-              #if ~facebook~<a href="~facebook~" target="_blank"><i class="fab fa-facebook"></i></a>#/if
-              #if ~instagram~<a href="~instagram~" target="_blank"><i class="fab fa-instagram"></i></a>#/if
-              #if ~twitter~<a href="~twitter~" target="_blank"><i class="fab fa-twitter"></i></a>#/if
-              #if ~linkedin~<a href="~linkedin~" target="_blank"><i class="fab fa-linkedin"></i></a>#/if
-            </div>
-          </div>
-        </div>
-      #/if
-
-      #if ~footer_type~ == 'map'
-        <div style="display: flex; justify-content: space-between; padding: 2rem; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 200px;">&copy; ~year~ ~businessname~</div>
-          <div style="flex: 1; min-width: 200px;">
-            #if ~email~<div>Email: <a href="mailto:~email~" target="_blank">~email~</a></div>#/if
-            #if ~phone_display~<div>Phone: <a href="tel:~phone_raw~" target="_blank">~phone_display~</a></div>#/if
-            <div style="margin-top: 0.5rem;">
-              #if ~facebook~<a href="~facebook~" target="_blank"><i class="fab fa-facebook"></i></a>#/if
-              #if ~instagram~<a href="~instagram~" target="_blank"><i class="fab fa-instagram"></i></a>#/if
-              #if ~twitter~<a href="~twitter~" target="_blank"><i class="fab fa-twitter"></i></a>#/if
-              #if ~linkedin~<a href="~linkedin~" target="_blank"><i class="fab fa-linkedin"></i></a>#/if
-              #if ~tiktok~<a href="~tiktok~" target="_blank"><i class="fab fa-tiktok"></i></a>#/if
-            </div>
-          </div>
-          <div style="flex: 1; min-width: 300px;">
-            <div style="font-weight: bold; margin-bottom: 0.5rem;">~address~</div>
-            <iframe
-              width="100%" height="200"
-              frameborder="0" style="border:0"
-              src="https://www.google.com/maps?q=~encoded_address~&output=embed"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-      #/if
+      <div id="footer-container"></div>
     </footer>
   </div>
+  <script>
+    // Example dynamic data (you’ll replace this with actual values using Make)
+    const data = {
+      logosubmitted: "~logosubmitted~",
+      footer_type: "~footer_type~",
+      email: "~email~",
+      phone_display: "~phone_display~",
+      phone_raw: "~phone_raw~",
+      facebook: "~facebook~",
+      instagram: "~instagram~",
+      twitter: "~twitter~",
+      linkedin: "~linkedin~",
+      address: "~address~",
+      encoded_address: "~encoded_address~"
+    };
+  
+    // Inject logo or business name
+    const logoContainer = document.getElementById("logo-container");
+    if (data.logosubmitted && data.logosubmitted !== "~logosubmitted~") {
+      logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="${data.businessname} logo" style="max-height: 40px;">`;
+    } else {
+      logoContainer.textContent = data.businessname;
+    }
+  
+    // Render footer based on footer_type
+    const footer = document.getElementById("footer-container");
+    if (data.footer_type === "simple") {
+      footer.innerHTML = `&copy; ${data.year} ${data.businessname} | Powered by <a href="swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https:buddertech.com" target="_blank">Budder Technology</a>`;
+    }
+    else if (data.footer_type === "two-column") {
+      footer.innerHTML = `
+        <div>
+          &copy; ${data.year} ${data.businessname} | Powered by <a href="swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https:buddertech.com" target="_blank">Budder Technology</a>
+        </div>
+        <div>
+          ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
+          ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
+          <div style="margin-top: 0.5rem;">
+            ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
+            ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
+            ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>` : ""}
+            ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
+          </div>
+        </div>
+      `;
+    }
+    else if (data.footer_type === "map") {
+      footer.innerHTML = `
+        <div>
+          &copy; ${data.year} ${data.businessname} | Powered by <a href="swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https:buddertech.com" target="_blank">Budder Technology</a>
+        </div>
+        <div>
+          ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
+          ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
+          <div style="margin-top: 0.5rem;">
+            ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
+            ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
+            ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>` : ""}
+            ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
+          </div>
+        </div>
+        <div>
+          ${data.address ? `<p>${data.address}</p>` : ""}
+          <iframe
+            width="100%" height="200"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps?q=${data.encoded_address}&output=embed"
+            allowfullscreen>
+          </iframe>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
