@@ -20,7 +20,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background-color: #ffffffcc;
+      background-color: ~headerbackgroundcolor~;
+      color: ~headertextcolor~;
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
@@ -93,6 +94,7 @@
     }
     .section {
       background-color: ~sectionbackgroundcolor~;
+      color: ~sectiontextcolor~;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
@@ -135,7 +137,8 @@
     }
     footer {
       padding: 2rem;
-      background-color: #f4f6fa;
+      background-color: ~footerbackgroundcolor~;
+      color: ~footertextcolor~;
     }
     .footer-columns {
       display: flex;
@@ -244,15 +247,35 @@
       address: "~address~",
       encoded_address: "~encoded_address~"
     };
-  
+    Object.keys(data).forEach(key => {
+    if (data[key] === null || data[key] === "null" || typeof val !== "string" || val.trim().startsWith("~")) {
+      data[key] = "";
+    }
+    });
     // Inject logo or business name
     const logoContainer = document.getElementById("logo-container");
-    if (data.logosubmitted && data.logosubmitted !== "~logosubmitted~") {
+    if (data.logosubmitted && data.logosubmitted !== "") {
       logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="${data.businessname} logo" style="max-height: 40px;">`;
     } else {
       logoContainer.textContent = data.businessname;
     }
-  
+    // Inject logo or business name
+    const logoContainer = document.getElementById("logo-container");
+    if (data.logosubmitted && data.logosubmitted !== "") {
+      logoContainer.innerHTML = `<img src="${data.logosubmitted}" alt="${data.businessname} logo" style="max-height: 40px;">`;
+    } else {
+      logoContainer.textContent = data.businessname;
+    }
+
+    if (data.address !== "" && data.encoded_address !== ""){
+      data.footer_type = "map";
+    }
+    else if (data.phone_raw !== "" && data.phone_display !== ""){
+      data.footer_type = "two-column";
+    }
+    else{
+      data.footer_type = "simple";
+    }
     // Render footer based on footer_type
     const footer = document.getElementById("footer-container");
     if (data.footer_type === "simple") {
