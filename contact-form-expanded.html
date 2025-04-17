@@ -334,6 +334,25 @@
         </div>
       `;
     }
+    document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.querySelector(".nav-toggle");
+    const mobileNav = document.getElementById("navLinks");
+
+    // 1. Close nav on link click
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("show");
+      });
+    });
+
+    // 2. Close nav if clicking outside it
+    document.addEventListener("click", function (event) {
+      const isClickInsideNav = mobileNav.contains(event.target) || navToggle.contains(event.target);
+      if (!isClickInsideNav && mobileNav.classList.contains("show")) {
+        mobileNav.classList.remove("show");
+      }
+    });
+  });
   </script>
 </body>
 </html>
