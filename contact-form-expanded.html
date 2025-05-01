@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{BusinessName}} - Contact</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: {{BackgroundColor}};
+      color: {{TextColor}};
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: {{AccentColor}};
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>{{Headline}}</h1>
+      <p>{{IntroParagraph}}</p>
+    </header>
+
+    <div class="form">
+      <form action="https://formsubmit.co/{{YourEmail}}" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <section>
+      <h2>About {{BusinessName}}</h2>
+      <p>{{BusinessDetails}}</p>
+    </section>
+  </div>
+</body>
+</html>
