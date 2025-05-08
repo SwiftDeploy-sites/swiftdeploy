@@ -352,6 +352,119 @@
         mobileNav.classList.remove("show");
       }
     });
+    //dynamicaly fill shop
+
+    const shopElement = document.getElementById('shop-output');
+
+    if (shopElement){
+        
+        fetch('products.json')
+        .then(response => response.json())
+        .then(data => {
+        if (!Array.isArray(data) || data.length === 0){
+            shopElement.style.display = 'none';
+        }
+        else
+        {
+            let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;">';
+
+        data.forEach(product => {
+            const isEtsy = product.Method && product.Method.toLowerCase() === 'etsy';
+            const isPayPal = product.Method && product.Method.toLowerCase() === 'paypal';
+            const isStripe = product.Method && product.Method.toLowerCase() === 'stripe';
+
+            let buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#ec6f3d;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy Here</a>`;
+            if (isEtsy) {
+            buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#ec6f3d;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">View on Etsy</a>`;
+            } else if (isPayPal) {
+            buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#0070ba;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy Now</a>`;
+            }
+            else if (isStripe) {
+                buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#0070ba;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy on Stripe</a>`;
+            }
+
+            html += `
+            <div style="border:1px solid #ccc;border-radius:8px;padding:1rem;background:#fff;text-align:center;">
+                <img src="products/${product.fileName}" alt="${product.altText || ''}" style="max-width:100%;border-radius:4px;margin-bottom:0.75rem;" />
+                <h3 style="font-size:1.1rem;margin-bottom:0.3rem;">${product.ProductName}</h3>
+                <p style="font-size:0.9rem;color:#444;margin-bottom:0.5rem;">${product.Description}</p>
+                <strong style="font-size:1rem;color:#333;">$${parseFloat(product.Price).toFixed(2)}</strong>
+                <div>${buttonHtml}</div>
+            </div>
+            `;
+        });
+
+        html += '</div>';
+        shopElement.innerHTML = html;
+        }
+
+        
+        })
+        .catch(err => {
+        //console.error('Error loading products.json:', err);
+        });
+    }
+
+
+    // Dynamically load and render gallery from gallery.json
+    const galleryElement = document.getElementById('gallery-output');
+    if (!galleryElement)
+    {
+
+    } 
+    else
+    {
+    fetch('gallery.json')
+    .then(response => response.json())
+    .then(data => {
+        if (!Array.isArray(data) || data.length === 0){
+            galleryElement.style.display = 'none';
+        }
+        else
+        {
+            if (data.length <= 3) {
+                // Render as carousel
+                let currentIndex = 0;
+                galleryElement.innerHTML = `
+                    <div id="gallery-carousel" style="position: relative; max-width: 100%; overflow: hidden;">
+                    <img id="carousel-image" src="gallery/${data[0].Filename}" alt="${data[0].altText || ''}" style="width: 100%; border-radius: 8px;">
+                    <button id="prev-btn" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:44px;height:44px;"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="next-btn" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:44px;height:44px;"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                `;
+        
+                const imgEl = document.getElementById('carousel-image');
+                document.getElementById('prev-btn').onclick = () => {
+                    currentIndex = (currentIndex - 1 + data.length) % data.length;
+                    imgEl.src = 'gallery/' + data[currentIndex].Filename;
+                    imgEl.alt = data[currentIndex].altText || '';
+                };
+                document.getElementById('next-btn').onclick = () => {
+                    currentIndex = (currentIndex + 1) % data.length;
+                    imgEl.src = 'gallery/' + data[currentIndex].Filename;
+                    imgEl.alt = data[currentIndex].altText || '';
+                };
+                } else {
+                // Render as responsive grid gallery
+                let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">';
+                data.forEach(item => {
+                    html += `
+                    <div>
+                        <img src="gallery/${item.Filename}" alt="${item.altText || ''}" style="width:100%;border-radius:8px;">
+                    </div>
+                    `;
+                });
+                html += '</div>';
+                galleryElement.innerHTML = html;
+                }
+        }
+
+        
+    })
+    .catch(err => {
+        console.error('Error loading gallery.json:', err);
+    });
+    }
   });
   </script>
 </body>
