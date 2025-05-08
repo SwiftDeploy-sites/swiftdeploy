@@ -418,7 +418,8 @@
     .then(response => response.json())
     .then(data => {
         if (!Array.isArray(data) || data.length === 0){
-            galleryElement.style.display = 'none';
+            var galleryContainer = document.getElementById('image-gallery-container');
+            galleryContainer.style.display = 'none';
         }
         else
         {
