@@ -418,8 +418,16 @@
     .then(response => response.json())
     .then(data => {
         if (!Array.isArray(data) || data.length === 0){
-            var galleryContainer = document.getElementById('image-gallery-container');
-            galleryContainer.style.display = 'none';
+          var galleryContainer = document.getElementById('image-gallery-container');
+          var parent = galleryContainer.parentElement;
+
+          if (parent && parent.tagName.toLowerCase() === 'section' && parent.classList.contains('section')) {
+              parent.style.display = 'none';
+          }
+          else
+          {
+          galleryContainer.style.display = 'none';
+          }
         }
         else
         {
@@ -463,7 +471,16 @@
         
     })
     .catch(err => {
-        console.error('Error loading gallery.json:', err);
+        var galleryContainer = document.getElementById('image-gallery-container');
+        var parent = galleryContainer.parentElement;
+
+        if (parent && parent.tagName.toLowerCase() === 'section' && parent.classList.contains('section')) {
+            parent.style.display = 'none';
+        }
+        else
+        {
+        galleryContainer.style.display = 'none';
+        }
     });
     }
   });
