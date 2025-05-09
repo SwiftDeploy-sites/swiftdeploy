@@ -254,9 +254,9 @@
       instagram: "~instagram~",
       twitter: "~twitter~",
       linkedin: "~linkedin~",
+      tiktok: "~tiktok~",
       youtube: "~youtube~",
-      address: "~address~",
-      encoded_address: "~encoded_address~"
+      address: "~address~"
     };
     Object.keys(data).forEach(key => {
     if (data[key] === null || data[key] === "null" || typeof data[key] !== "string" || data[key].trim().startsWith("~")) {
@@ -277,6 +277,9 @@
     else if (data.phone_raw !== "" && data.phone_display !== ""){
       data.footer_type = "two-column";
     }
+    else if (data.facebook !== "" || data.instagram !== "" || data.twitter !== "" || data.linkedin !== "" || data.tiktok !== "" || data.youtube !== ""){
+      data.footer_type = "two-column";
+    }
     else{
       data.footer_type = "simple";
     }
@@ -294,12 +297,13 @@
           <div style="flex: 1; min-width: 200px;">
             ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
             ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
-            <div style="margin-top: 0.5rem;">
-              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
-              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
-              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>` : ""}
-              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
-              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube"></i></a>` : ""}
+            <div style="margin-top: 0.5rem; display: flex; justify-content: space-evenly; align-items: center; gap: 0.5rem;">
+              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.tiktok ? `<a href="${data.tiktok}" target="_blank"><i class="fab fa-tiktok" style="font-size: 1.5rem;"></i></a>` : ""}
             </div>
           </div>
         </div>
@@ -309,29 +313,44 @@
       footer.innerHTML = `
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
           <div style="flex: 1; min-width: 200px;">
-            &copy; ~year~ ~businessname~ | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>
-          </div>
-          <div style="flex: 1; min-width: 200px;">
             ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
             ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
-            <div style="margin-top: 0.5rem;">
-              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
-              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
-              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>` : ""}
-              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
-              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube"></i></a>` : ""}
+            <div style="margin-top: 0.5rem; display: flex; justify-content: space-evenly; align-items: center; gap: 0.5rem;">
+              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.tiktok ? `<a href="${data.tiktok}" target="_blank"><i class="fab fa-tiktok" style="font-size: 1.5rem;"></i></a>` : ""}
             </div>
           </div>
-          <div style="flex: 1; min-width: 200px;">
-            ${data.address ? `<p>${data.address}</p>` : ""}
-            <iframe
-              width="100%" height="200"
-              frameborder="0" style="border:0"
-              src="https://www.google.com/maps?q=${data.encoded_address}&output=embed"
-              allowfullscreen>
-            </iframe>
+          <div style="flex: 2; min-width: 200px;">
+            <div style="display: flex; align-items: flex-start; gap: 10px;">
+              <div style="flex: 1; min-width: 150px;">
+                ${data.address ? `
+                  <a 
+                    href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.address)}" 
+                    target="_blank" 
+                    style="text-decoration: none; color: inherit; line-height: 1.4;">
+                    ${data.address}
+                  </a>` : ""}
+              </div>
+              <div style="flex: 2;">
+                <iframe
+                  width="100%" height="200"
+                  frameborder="0" style="border:0"
+                  src="https://www.google.com/maps?q=${data.address}&output=embed"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
           </div>
         </div>
+        <div style="margin-top: 10px; text-align: center;">
+          &copy; ~year~ ~businessname~ | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>
+        </div>
+          
+        
       `;
     }
     document.addEventListener("DOMContentLoaded", function () {
