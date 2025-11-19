@@ -391,6 +391,7 @@
             const isEtsy = product.Method && product.Method.toLowerCase() === 'etsy';
             const isPayPal = product.Method && product.Method.toLowerCase() === 'paypal';
             const isStripe = product.Method && product.Method.toLowerCase() === 'stripe';
+            const isAffiliate = product.Method && product.Method.toLowerCase() === 'affiliate';
 
             let buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#ec6f3d;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy Here</a>`;
             if (isEtsy) {
@@ -400,6 +401,9 @@
             }
             else if (isStripe) {
                 buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#0070ba;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy on Stripe</a>`;
+            }
+            else if (isAffiliate) {
+              buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#ec6f3d;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy Here</a><br>**Affiliate Link**`;
             }
 
             html += `
