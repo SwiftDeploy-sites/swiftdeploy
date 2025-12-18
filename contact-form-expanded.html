@@ -1,170 +1,423 @@
+<!-- TEMPLATE START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>~businessname~ – ~headline~</title>
+  <meta name="description" content="~meta_description~" />
   <link rel="icon" href="~favicon_url~" type="image/png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root{
+      --bg: ~backgroundcolor~;
+      --text: ~textcolor~;
+      --header-bg: ~headerbackgroundcolor~;
+      --header-text: ~headertextcolor~;
+      --accent: ~accentcolor~;
+      --section-bg: ~sectionbackgroundcolor~;
+      --section-text: ~sectiontextcolor~;
+      --footer-bg: ~footerbackgroundcolor~;
+      --footer-text: ~footertextcolor~;
+
+      --radius: 16px;
+      --radius-sm: 12px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --shadow-soft: 0 6px 18px rgba(0,0,0,0.06);
+      --border: 1px solid rgba(0,0,0,0.08);
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: ~backgroundcolor~;
-      color: ~textcolor~;
+      background-color: var(--bg);
+      color: var(--text);
       margin: 0;
       padding: 0;
     }
+
+    /* Modern nav */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      background-color: ~headerbackgroundcolor~;
-      color: ~headertextcolor~;
-      backdrop-filter: blur(10px);
+      gap: 1rem;
+      padding: 0.9rem 1.25rem;
+      background-color: var(--header-bg);
+      color: var(--header-text);
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid #eee;
+      border-bottom: var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
+
     .logo {
-      font-weight: 600;
-      font-size: 1.25rem;
-      color: ~accentcolor~;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--header-text);
     }
+
+    /* NOTE: do not modify logo-container HTML in other rulesets;
+       keep your existing JS injection. */
+    #logo-container a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    #logo-container img {
+      max-height: 40px;
+      width: auto;
+      display: block;
+    }
+
     .nav-toggle {
       display: none;
-      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: var(--border);
+      background: rgba(255,255,255,0.22);
+      color: var(--header-text);
+      font-size: 1.1rem;
       cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s ease, background 0.2s ease;
     }
+    .nav-toggle:hover { background: rgba(255,255,255,0.32); }
+    .nav-toggle:active { transform: scale(0.98); }
+
     .desktop-nav {
       display: flex;
-      gap: 1.5rem;
+      align-items: center;
+      gap: 0.3rem;
+      flex-wrap: wrap;
     }
+
+    nav a {
+      text-decoration: none;
+      color: var(--header-text);
+      font-weight: 600;
+      padding: 0.6rem 0.85rem;
+      border-radius: 999px;
+      transition: background 0.25s ease, color 0.25s ease;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.22);
+      color: var(--header-text);
+    }
+
+    /* Active page/link (supports multi-page + anchors) */
+    nav a.active {
+      background: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    /* Mobile nav */
     .mobile-nav {
       display: none;
       flex-direction: column;
       position: absolute;
-      top: 60px;
-      right: 20px;
-      background-color: ~headerbackgroundcolor~;
-      color: ~headertextcolor~;
-      border: 1px solid #ddd;
-      padding: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      top: 64px;
+      right: 16px;
+      min-width: 220px;
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      border: var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem;
+      box-shadow: var(--shadow);
       z-index: 999;
     }
-    .mobile-nav.show {
-      display: flex;
+    .mobile-nav a {
+      border-radius: 12px;
+      padding: 0.75rem 0.85rem;
+      justify-content: space-between;
     }
-    nav a {
-      text-decoration: none;
-      color: ~headertextcolor~;
-      font-weight: 500;
-      transition: color 0.3s ease;
+    .mobile-nav.show { display: flex; }
+
+    @media (max-width: 860px) {
+      .nav-toggle { display: inline-flex; }
+      .desktop-nav { display: none; }
+      nav { padding: 0.8rem 1rem; }
     }
-    nav a:hover {
-      color: ~accentcolor~;
-    }
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-      .desktop-nav {
-        display: none;
-      }
-    }
+
+    /* Layout */
     .container {
-      max-width: 1000px;
+      max-width: var(--maxw);
       margin: auto;
-      padding: 2rem;
+      padding: 2rem 1.25rem 3.5rem;
     }
+
+    /* Hero */
     header {
       text-align: center;
-      padding: 4rem 1rem 2rem;
+      padding: 3.75rem 0 1rem;
+      position: relative;
     }
+
+    /* Subtle background glow */
+    header::before{
+      content:"";
+      position:absolute;
+      inset: -40px -10px auto -10px;
+      height: 220px;
+      background: radial-gradient(60% 80% at 50% 0%, rgba(0,0,0,0.06), transparent 70%);
+      pointer-events:none;
+      filter: blur(0px);
+    }
+
+    .hero-card{
+      margin: 0 auto;
+      max-width: 860px;
+      padding: 2.25rem 2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.35));
+      border: var(--border);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:auto -80px -120px -80px;
+      height: 220px;
+      background: radial-gradient(55% 60% at 50% 50%, rgba(0,0,0,0.06), transparent 70%);
+      pointer-events:none;
+    }
+
     h1 {
-      font-size: 2.75rem;
-      color: ~accentcolor~;
-      margin-bottom: 1rem;
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      color: var(--accent);
+      margin: 0 0 0.85rem;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
     }
+
     p {
-      font-size: 1.125rem;
-      line-height: 1.6;
+      font-size: 1.075rem;
+      line-height: 1.75;
+      margin: 0.85rem 0;
     }
+
+    .hero-actions{
+      margin-top: 1.4rem;
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:0.55rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration:none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+      user-select: none;
+    }
+    .btn:active { transform: scale(0.99); }
+    .btn-primary{
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    }
+    .btn-primary:hover{ box-shadow: 0 14px 28px rgba(0,0,0,0.14); }
+    .btn-secondary{
+      background: rgba(255,255,255,0.55);
+      color: var(--text);
+      border: var(--border);
+    }
+    .btn-secondary:hover{ background: rgba(255,255,255,0.7); }
+
+    /* Sections */
     .section {
-      background-color: ~sectionbackgroundcolor~;
-      color: ~sectiontextcolor~;
+      background-color: var(--section-bg);
+      color: var(--section-text);
       padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      margin-top: 3rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      margin-top: 2.25rem;
+      border: var(--border);
+    }
+
+    .section-heading {
+      font-size: 1.5rem;
+      margin: 0 0 1rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 900px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .card-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    @media (max-width: 900px){
+      .card-grid{ grid-template-columns: 1fr; }
+    }
+
+    .mini-card{
+      padding: 1.1rem 1.1rem;
+      border-radius: var(--radius-sm);
+      border: var(--border);
+      background: rgba(255,255,255,0.6);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    }
+    .mini-card h3{
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+    .mini-card p{
+      margin: 0.35rem 0 0;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+    .mini-card .icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.06);
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin: 0.75rem 0 0;
+    }
+    li { margin: 0.55rem 0; }
+
+    blockquote {
+      font-style: italic;
+      margin: 1rem 0 0;
+      padding: 0.95rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: rgba(255,255,255,0.5);
+      border-radius: 12px;
+      color: rgba(0,0,0,0.70);
+    }
+
+    /* Forms */
+    .form-wrap{
+      display:grid;
+      gap: 0.85rem;
     }
     input, textarea, button {
       width: 100%;
       padding: 1rem;
-      margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      margin-top: 0;
+      border: 1px solid rgba(0,0,0,0.16);
+      border-radius: 14px;
       font-size: 1rem;
       box-sizing: border-box;
+      background: rgba(255,255,255,0.85);
+      color: var(--text);
+      outline: none;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
     }
+    input:focus, textarea:focus{
+      border-color: rgba(0,0,0,0.28);
+      box-shadow: 0 0 0 5px rgba(0,0,0,0.06);
+    }
+    textarea{ resize: vertical; min-height: 160px; }
+
     button {
-      background-color: ~accentcolor~;
+      background-color: var(--accent);
       color: white;
-      font-weight: bold;
+      font-weight: 800;
       border: none;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
     }
     button:hover {
-      background-color: #003a7b;
+      filter: brightness(0.98);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.16);
     }
-    .section-heading {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-      color: ~accentcolor~;
-    }
-    ul {
-      padding-left: 1.5rem;
-    }
-    blockquote {
-      font-style: italic;
-      margin: 1rem 0;
-      padding-left: 1rem;
-      border-left: 4px solid ~accentcolor~;
-      color: #555;
-    }
+    button:active { transform: scale(0.99); }
+
+    /* Footer (do not change footer HTML, only styles) */
     footer {
+      margin-top: 2.5rem;
       padding: 2rem;
-      background-color: ~footerbackgroundcolor~;
-      color: ~footertextcolor~;
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow-soft);
     }
+
     .footer-columns {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      gap: 1.5rem;
     }
     .footer-columns div {
       min-width: 200px;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
     }
+
     .footer-columns a {
-      color: ~accentcolor~;
+      color: var(--accent);
       text-decoration: none;
       margin-right: 10px;
     }
+
     footer a {
       color: inherit;
       text-decoration: none;
     }
-    
+
     footer a:hover {
       color: inherit;
       text-decoration: underline;
     }
   </style>
+
   <script>
     function toggleMenu() {
       const navLinks = document.getElementById("navLinks");
@@ -181,13 +434,16 @@
    
 </div>
 
-    <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+
+    <!-- NAV LINKS (generator should overwrite these anchors per page logic) -->
     <div class="desktop-nav">
       <a href="#services">Services</a>
       <a href="#about">About</a>
       <!-- <a href="#testimonials">Testimonials</a> -->
       <a href="#contact">Contact</a>
     </div>
+
     <div class="mobile-nav" id="navLinks">
       <a href="#services">Services</a>
       <a href="#about">About</a>
@@ -198,50 +454,97 @@
 
   <div class="container">
     <header>
-      <h1>~headline~</h1>
-      <p>~introparagraph~</p>
+      <div class="hero-card">
+        <h1>~headline~</h1>
+        <p>~introparagraph~</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-paper-plane"></i> ~primary_cta_label~</a>
+          <a class="btn btn-secondary" href="#services"><i class="fa-solid fa-sparkles"></i> Explore Services</a>
+        </div>
+      </div>
     </header>
 
-    <section class="section" id="services">
-      <h2 class="section-heading">~whatwedoheader~</h2>
-      <ul>
-        <li>~service_1~</li>
-        <li>~service_2~</li>
-        <li>~service_3~</li>
-      </ul>
-    </section>
+    <main>
+      <section class="section" id="services">
+        <div class="two-col">
+          <div>
+            <h2 class="section-heading">~whatwedoheader~</h2>
+            <p>~services_intro_paragraph~</p>
+            <ul>
+              <li>~service_1~</li>
+              <li>~service_2~</li>
+              <li>~service_3~</li>
+            </ul>
+          </div>
 
-    <section class="section" id="about">
-      <h2 class="section-heading">About ~businessname~</h2>
-      <p>~businessdetails~</p>
-    </section>
+          <div>
+            <div class="mini-card">
+              <div class="icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <h3>Designed to Feel Personal</h3>
+              <p>We highlight <strong>customization</strong> and <strong>quality finishing</strong> so each order looks intentional, not generic.</p>
+            </div>
+            <div class="mini-card" style="margin-top: 1rem;">
+              <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+              <h3>Locally Based</h3>
+              <p>Proudly serving customers from <strong>~city_state~</strong> and beyond with a warm, handcrafted touch.</p>
+            </div>
+          </div>
+        </div>
 
-    <!-- <section class="section" id="testimonials">
-      <h2 class="section-heading">Client Success Stories</h2>
-      <blockquote>~testimonial_1~</blockquote>
-      <blockquote>~testimonial_2~</blockquote>
-    </section> -->
+        <div class="card-grid">
+          <div class="mini-card">
+            <div class="icon"><i class="fa-solid fa-badge-check"></i></div>
+            <h3>Clean, Professional Finish</h3>
+            <p>Layouts and engraving choices designed for <strong>clarity</strong>, <strong>balance</strong>, and durability.</p>
+          </div>
+          <div class="mini-card">
+            <div class="icon"><i class="fa-solid fa-comments"></i></div>
+            <h3>Easy Ordering</h3>
+            <p>Quick guidance on wording, sizing, and design—so you can order confidently without overthinking.</p>
+          </div>
+          <div class="mini-card">
+            <div class="icon"><i class="fa-solid fa-gift"></i></div>
+            <h3>Gift-Ready</h3>
+            <p>Perfect for <strong>birthdays</strong>, <strong>holidays</strong>, <strong>teams</strong>, and meaningful milestones.</p>
+          </div>
+        </div>
+      </section>
 
-    <section class="section" id="contact">
-      <h2 class="section-heading">Get In Touch</h2>
-      <form action="https://formsubmit.co/~email~" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
+      <section class="section" id="about">
+        <h2 class="section-heading">About ~businessname~</h2>
+        <p>~businessdetails~</p>
+      </section>
 
-    <section class="section" id="cta">
-      <h2 class="section-heading">~section_cta~</h2>
-      <p>~cta_paragraph~</p>
-    </section>
+      <!-- <section class="section" id="testimonials">
+        <h2 class="section-heading">Client Success Stories</h2>
+        <blockquote>~testimonial_1~</blockquote>
+        <blockquote>~testimonial_2~</blockquote>
+      </section> -->
 
-    <!-- Dynamic Footer -->
-    <footer>
-      <div id="footer-container"></div>
-    </footer>
+      <section class="section" id="contact">
+        <h2 class="section-heading">Get In Touch</h2>
+        <p>~contact_intro_paragraph~</p>
+        <form class="form-wrap" action="https://formsubmit.co/~email~" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+          <button type="submit">~contact_button_label~</button>
+        </form>
+      </section>
+
+      <section class="section" id="cta">
+        <h2 class="section-heading">~section_cta~</h2>
+        <p>~cta_paragraph~</p>
+      </section>
+
+      <!-- Dynamic Footer -->
+      <footer>
+        <div id="footer-container"></div>
+      </footer>
+    </main>
   </div>
+
   <script>
  
     const data = {
@@ -525,3 +828,4 @@
   </script>
 </body>
 </html>
+<!-- TEMPLATE END -->
