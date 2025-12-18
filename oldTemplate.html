@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>~businessname~ – ~headline~</title>
+  <link rel="icon" href="~favicon_url~" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: ~backgroundcolor~;
+      color: ~textcolor~;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: ~headerbackgroundcolor~;
+      color: ~headertextcolor~;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #eee;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: ~accentcolor~;
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .desktop-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: ~headerbackgroundcolor~;
+      color: ~headertextcolor~;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    }
+    .mobile-nav.show {
+      display: flex;
+    }
+    nav a {
+      text-decoration: none;
+      color: ~headertextcolor~;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: ~accentcolor~;
+    }
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      .desktop-nav {
+        display: none;
+      }
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+    h1 {
+      font-size: 2.75rem;
+      color: ~accentcolor~;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+    .section {
+      background-color: ~sectionbackgroundcolor~;
+      color: ~sectiontextcolor~;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-top: 3rem;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: ~accentcolor~;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #003a7b;
+    }
+    .section-heading {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: ~accentcolor~;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    blockquote {
+      font-style: italic;
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid ~accentcolor~;
+      color: #555;
+    }
+    footer {
+      padding: 2rem;
+      background-color: ~footerbackgroundcolor~;
+      color: ~footertextcolor~;
+    }
+    .footer-columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .footer-columns div {
+      min-width: 200px;
+      margin-bottom: 1rem;
+    }
+    .footer-columns a {
+      color: ~accentcolor~;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("show");
+    }
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="logo" id="logo-container">
+      
+    </div>
+
+   
+</div>
+
+    <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+    <div class="desktop-nav">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <!-- <a href="#testimonials">Testimonials</a> -->
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="mobile-nav" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <!-- <a href="#testimonials">Testimonials</a> -->
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>~headline~</h1>
+      <p>~introparagraph~</p>
+    </header>
+
+    <section class="section" id="services">
+      <h2 class="section-heading">~whatwedoheader~</h2>
+      <ul>
+        <li>~service_1~</li>
+        <li>~service_2~</li>
+        <li>~service_3~</li>
+      </ul>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-heading">About ~businessname~</h2>
+      <p>~businessdetails~</p>
+    </section>
+
+    <!-- <section class="section" id="testimonials">
+      <h2 class="section-heading">Client Success Stories</h2>
+      <blockquote>~testimonial_1~</blockquote>
+      <blockquote>~testimonial_2~</blockquote>
+    </section> -->
+
+    <section class="section" id="contact">
+      <h2 class="section-heading">Get In Touch</h2>
+      <form action="https://formsubmit.co/~email~" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <section class="section" id="cta">
+      <h2 class="section-heading">~section_cta~</h2>
+      <p>~cta_paragraph~</p>
+    </section>
+
+    <!-- Dynamic Footer -->
+    <footer>
+      <div id="footer-container"></div>
+    </footer>
+  </div>
+  <script>
+ 
+    const data = {
+      logosubmitted: "~logosubmitted~",
+      footer_type: "",
+      email: "~email~",
+      phone_display: "~phone_display~",
+      phone_raw: "~phone_raw~",
+      facebook: "~facebook~",
+      instagram: "~instagram~",
+      twitter: "~twitter~",
+      linkedin: "~linkedin~",
+      tiktok: "~tiktok~",
+      youtube: "~youtube~",
+      address: "~address~"
+    };
+    Object.keys(data).forEach(key => {
+    if (data[key] === null || data[key] === "null" || typeof data[key] !== "string" || data[key].trim().startsWith("~")) {
+      data[key] = "";
+    }
+    });
+    // Inject logo or business name
+    const logoContainer = document.getElementById("logo-container");
+    if (data.logosubmitted && data.logosubmitted !== "") {
+      logoContainer.innerHTML = `<a href="#"><img src="${data.logosubmitted}" alt="~businessname~ logo" style="max-height: 40px;"></a>`;
+    } else {
+      logoContainer.innerHTML = `<a href="#">~businessname~</a>`;
+    }
+
+    if (data.address !== "" && data.encoded_address !== ""){
+      data.footer_type = "map";
+    }
+    else if (data.phone_raw !== "" && data.phone_display !== ""){
+      data.footer_type = "two-column";
+    }
+    else if (data.facebook !== "" || data.instagram !== "" || data.twitter !== "" || data.linkedin !== "" || data.tiktok !== "" || data.youtube !== ""){
+      data.footer_type = "two-column";
+    }
+    else{
+      data.footer_type = "simple";
+    }
+    // Render footer based on footer_type
+    const footer = document.getElementById("footer-container");
+    if (data.footer_type === "simple") {
+      footer.innerHTML = `&copy; ~year~ ~businessname~ | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>`;
+    }
+    else if (data.footer_type === "two-column") {
+      footer.innerHTML = `
+       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+          <div style="flex: 1; min-width: 200px;">
+            &copy; ~year~ ~businessname~ | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>
+          </div>
+          <div style="flex: 1; min-width: 200px;">
+            ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
+            ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
+            <div style="margin-top: 0.5rem; display: flex; justify-content: space-evenly; align-items: center; gap: 0.5rem;">
+              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.tiktok ? `<a href="${data.tiktok}" target="_blank"><i class="fab fa-tiktok" style="font-size: 1.5rem;"></i></a>` : ""}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    else if (data.footer_type === "map") {
+      footer.innerHTML = `
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+          <div style="flex: 1; min-width: 200px;">
+            ${data.email ? `Email: <a href="mailto:${data.email}" target="_blank">${data.email}</a><br>` : ""}
+            ${data.phone_display ? `Phone: <a href="tel:${data.phone_raw}" target="_blank">${data.phone_display}</a>` : ""}
+            <div style="margin-top: 0.5rem; display: flex; justify-content: space-evenly; align-items: center; gap: 0.5rem;">
+              ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class="fab fa-facebook" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class="fab fa-instagram" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.twitter ? `<a href="${data.twitter}" target="_blank"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.linkedin ? `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.youtube ? `<a href="${data.youtube}" target="_blank"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>` : ""}
+              ${data.tiktok ? `<a href="${data.tiktok}" target="_blank"><i class="fab fa-tiktok" style="font-size: 1.5rem;"></i></a>` : ""}
+            </div>
+          </div>
+          <div style="flex: 2; min-width: 200px;">
+            <div style="display: flex; align-items: flex-start; gap: 10px;">
+              <div style="flex: 1; min-width: 150px;">
+                ${data.address ? `
+                  <a 
+                    href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.address)}" 
+                    target="_blank" 
+                    style="text-decoration: none; color: inherit; line-height: 1.4;">
+                    ${data.address}
+                  </a>` : ""}
+              </div>
+              <div style="flex: 2;">
+                <iframe
+                  width="100%" height="200"
+                  frameborder="0" style="border:0"
+                  src="https://www.google.com/maps?q=${data.address}&output=embed"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 10px; text-align: center;">
+          &copy; ~year~ ~businessname~ | Powered by <a href="http://swiftdeploy.com" target="_blank">SwiftDeploy</a> from <a href="https://buddertech.com" target="_blank">Budder Technology</a>
+        </div>
+          
+        
+      `;
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.querySelector(".nav-toggle");
+    const mobileNav = document.getElementById("navLinks");
+
+    // 1. Close nav on link click
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("show");
+      });
+    });
+
+    // 2. Close nav if clicking outside it
+    document.addEventListener("click", function (event) {
+      const isClickInsideNav = mobileNav.contains(event.target) || navToggle.contains(event.target);
+      if (!isClickInsideNav && mobileNav.classList.contains("show")) {
+        mobileNav.classList.remove("show");
+      }
+    });
+    //dynamicaly fill shop
+
+    const shopElement = document.getElementById('shop-output');
+
+    if (shopElement){
+        
+        fetch('products.json')
+        .then(response => response.json())
+        .then(data => {
+        if (!Array.isArray(data) || data.length === 0){
+            shopElement.style.display = 'none';
+        }
+        else
+        {
+            let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;">';
+
+        data.forEach(product => {
+            const isEtsy = product.Method && product.Method.toLowerCase() === 'etsy';
+            const isPayPal = product.Method && product.Method.toLowerCase() === 'paypal';
+            const isStripe = product.Method && product.Method.toLowerCase() === 'stripe';
+            const isAffiliate = product.Method && product.Method.toLowerCase() === 'affiliate';
+
+            let buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#ec6f3d;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy Here</a>`;
+            if (isEtsy) {
+            buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#ec6f3d;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">View on Etsy</a>`;
+            } else if (isPayPal) {
+            buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#0070ba;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy Now</a>`;
+            }
+            else if (isStripe) {
+                buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#0070ba;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy on Stripe</a>`;
+            }
+            else if (isAffiliate) {
+              buttonHtml = `<a href="${product.Link}" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.75rem;background:#ec6f3d;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;">Buy Here</a><br>**Affiliate Link**`;
+            }
+            if (product.Price == 0)
+            {
+              html += `
+              <div style="border:1px solid #ccc;border-radius:8px;padding:1rem;background:#fff;text-align:center;">
+                  <img src="products/${product.fileName}" alt="${product.altText || ''}" style="max-width:100%;border-radius:4px;margin-bottom:0.75rem;" />
+                  <h3 style="font-size:1.1rem;margin-bottom:0.3rem;">${product.ProductName}</h3>
+                  <p style="font-size:0.9rem;color:#444;margin-bottom:0.5rem;">${product.Description}</p>
+                  <div>${buttonHtml}</div>
+              </div>
+              `;
+            }
+            else
+            {
+              html += `
+              <div style="border:1px solid #ccc;border-radius:8px;padding:1rem;background:#fff;text-align:center;">
+                  <img src="products/${product.fileName}" alt="${product.altText || ''}" style="max-width:100%;border-radius:4px;margin-bottom:0.75rem;" />
+                  <h3 style="font-size:1.1rem;margin-bottom:0.3rem;">${product.ProductName}</h3>
+                  <p style="font-size:0.9rem;color:#444;margin-bottom:0.5rem;">${product.Description}</p>
+                  <strong style="font-size:1rem;color:#333;">$${parseFloat(product.Price).toFixed(2)}</strong>
+                  <div>${buttonHtml}</div>
+              </div>
+              `;
+            }
+
+            
+        });
+
+        html += '</div>';
+        shopElement.innerHTML = html;
+        }
+
+        
+        })
+        .catch(err => {
+        //console.error('Error loading products.json:', err);
+        });
+    }
+
+
+    // Dynamically load and render gallery from gallery.json
+    const galleryElement = document.getElementById('gallery-output');
+    if (!galleryElement)
+    {
+
+    } 
+    else
+    {
+    fetch('gallery.json')
+    .then(response => response.json())
+    .then(data => {
+        if (!Array.isArray(data) || data.length === 0){
+          var galleryContainer = document.getElementById('image-gallery-container');
+          var parent = galleryContainer.parentElement;
+
+          if (parent && parent.tagName.toLowerCase() === 'section' && parent.classList.contains('section')) {
+              parent.style.display = 'none';
+          }
+          else
+          {
+          galleryContainer.style.display = 'none';
+          }
+        }
+        else
+        {
+            if (data.length <= 3) {
+                // Render as carousel
+                let currentIndex = 0;
+                galleryElement.innerHTML = `
+                    <div id="gallery-carousel" style="position: relative; max-width: 100%; overflow: hidden;">
+                    <img id="carousel-image" src="gallery/${data[0].Filename}" alt="${data[0].altText || ''}" style="width: 100%; border-radius: 8px;">
+                    <button id="prev-btn" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:44px;height:44px;"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="next-btn" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:44px;height:44px;"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                `;
+        
+                const imgEl = document.getElementById('carousel-image');
+                document.getElementById('prev-btn').onclick = () => {
+                    currentIndex = (currentIndex - 1 + data.length) % data.length;
+                    imgEl.src = 'gallery/' + data[currentIndex].Filename;
+                    imgEl.alt = data[currentIndex].altText || '';
+                };
+                document.getElementById('next-btn').onclick = () => {
+                    currentIndex = (currentIndex + 1) % data.length;
+                    imgEl.src = 'gallery/' + data[currentIndex].Filename;
+                    imgEl.alt = data[currentIndex].altText || '';
+                };
+                } else {
+                // Render as responsive grid gallery
+                let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">';
+                data.forEach(item => {
+                    html += `
+                    <div>
+                        <img src="gallery/${item.Filename}" alt="${item.altText || ''}" style="width:100%;border-radius:8px;">
+                    </div>
+                    `;
+                });
+                html += '</div>';
+                galleryElement.innerHTML = html;
+                }
+        }
+
+        
+    })
+    .catch(err => {
+        var galleryContainer = document.getElementById('image-gallery-container');
+        var parent = galleryContainer.parentElement;
+
+        if (parent && parent.tagName.toLowerCase() === 'section' && parent.classList.contains('section')) {
+            parent.style.display = 'none';
+        }
+        else
+        {
+        galleryContainer.style.display = 'none';
+        }
+    });
+    }
+  });
+  </script>
+</body>
+</html>
